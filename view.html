@@ -4,12 +4,14 @@
 
     <form action="/convert" method="post">
         <div>
+            <!-- Already setted value so when reloading page, the value remains -->
             <input type="number" min="1" name="imputFrom" value="{{.InputFrom}}">
         </div>
 
         <div>
             <label>From</label>
             <select name="currencyFrom" id="currencyFrom">
+                <!-- Same thing as input field. If received currency equals one of this, it is getting selected -->
                 <option value="USD" {{if eq .CurrencyFrom `USD` }} selected{{end}}>Dollars USA</option>
                 <option value="RUB" {{if eq .CurrencyFrom `RUB` }} selected{{end}}>Rubles Russia</option>
                 <option value="EUR" {{if eq .CurrencyFrom `EUR` }} selected{{end}}>Euro Europe</option>
@@ -28,6 +30,7 @@
         <button type="submit">Calculate</button>
     </form>
 
+    <!-- If .Value is not null -->
     {{if .Value}}
         <div>
             {{.InputFrom}} {{.CurrencyFrom}} to {{.CurrencyTo}}= {{.Value}} {{.Currency}}
