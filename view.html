@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+    <form action="/convert" method="post">
+        <div>
+            <input type="number" min="1" name="imputFrom" value="{{.InputFrom}}">
+        </div>
+
+        <div>
+            <label>From</label>
+            <select name="currencyFrom" id="currencyFrom">
+                <option value="USD" {{if eq .CurrencyFrom `USD` }} selected{{end}}>Dollars USA</option>
+                <option value="RUB" {{if eq .CurrencyFrom `RUB` }} selected{{end}}>Rubles Russia</option>
+                <option value="EUR" {{if eq .CurrencyFrom `EUR` }} selected{{end}}>Euro Europe</option>
+            </select>
+        </div>
+
+        <div>
+            <label>To</label>
+            <select name="currencyTo" id="currencyTo">
+                <option value="EUR" {{if eq .CurrencyTo `EUR`}} selected{{end}}>Euro Europe</option>
+                <option value="USD" {{if eq .CurrencyTo `USD`}} selected{{end}}>Dollars USA</option>
+                <option value="RUB" {{if eq .CurrencyTo `RUB`}} selected{{end}}>Rubles Russia</option>
+            </select>
+        </div>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    {{if .Value}}
+        <div>
+            {{.InputFrom}} {{.CurrencyFrom}} to {{.CurrencyTo}}= {{.Value}} {{.Currency}}
+        </div>
+    {{end}}
+
+</body>
+</html>
