@@ -44,7 +44,7 @@ func check(err error) { //Function to check errors
 }
 
 func viewHandler(writer http.ResponseWriter, request *http.Request) { //Main handler function
-	htmlFile, err := template.ParseFiles("view.html")
+	htmlFile, err := template.ParseFiles("assets/view.html")
 	check(err)
 
 	err = htmlFile.Execute(writer, resultData) //Sending ResulData type to the HTML with received values
@@ -98,6 +98,9 @@ func convertHandler(writer http.ResponseWriter, request *http.Request) { //Funct
 }
 
 func main() {
+	fs := http.FileServer(http.Dir("assets"))
+	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
+
 	http.HandleFunc("/", viewHandler)
 	http.HandleFunc("/convert", convertHandler)
 

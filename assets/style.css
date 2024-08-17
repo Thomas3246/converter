@@ -1,0 +1,7 @@
+body {
+    display: flex;
+            flex-direction: column; /* Сохраняем порядок элементов */
+            justify-content: center; /* Центрирование по вертикали */
+            align-items: center; /* Центрирование по горизонтали */
+            height: 80vh; /* Высота body для вертикального центрирования */
+}

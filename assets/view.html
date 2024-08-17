@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Converter</title>
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+
 <body>
 
-    <form action="/convert" method="post">
+    <div class="header">
+        <h1>Convert currencies</h1>
+    </div>
+
+    <form action="/convert" class="inputField" method="post">
         <div>
             <!-- Already setted value so when reloading page, the value remains -->
             <input type="number" min="1" name="imputFrom" value="{{.InputFrom}}">
@@ -32,7 +43,7 @@
 
     <!-- If .Value is not null -->
     {{if .Value}}
-        <div>
+        <div class="outputField">
             {{.InputFrom}} {{.CurrencyFrom}} to {{.CurrencyTo}}= {{.Value}} {{.Currency}}
         </div>
     {{end}}
