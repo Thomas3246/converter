@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"io"
 	"log"
+	"math"
 	"net/http"
 	"strconv"
 )
@@ -88,7 +89,7 @@ func convertHandler(writer http.ResponseWriter, request *http.Request) { //Funct
 
 	resultData = ResultData{ //Setting received values to the struct to send it to the HTML file
 		Currency:     currencyCode,
-		Value:        value,
+		Value:        math.Round(value*100) / 100,
 		InputFrom:    inputFrom,
 		CurrencyFrom: currencyFrom,
 		CurrencyTo:   currencyTo,

@@ -5,40 +5,53 @@
     <meta charset="utf-8">
     <title>Converter</title>
     <link rel="stylesheet" href="/assets/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="/assets/icon.png" type="image/png">
 </head>
 
 <body>
 
     <div class="header">
-        <h1>Convert currencies</h1>
+        <h1>CONVERT CURRENCIES</h1>
     </div>
 
-    <form action="/convert" class="inputField" method="post">
+    <form action="/convert" class="inputFields" method="post">
         <div>
             <!-- Already setted value so when reloading page, the value remains -->
-            <input type="number" min="1" name="imputFrom" value="{{.InputFrom}}">
+            <input class="inputField" type="number" min="1" max="10000" name="imputFrom" value="{{.InputFrom}}">
         </div>
 
-        <div>
-            <label>From</label>
+        <div class="selectionDiv">
+            <div>
+                <label>From</label>
             <select name="currencyFrom" id="currencyFrom">
                 <!-- Same thing as input field. If received currency equals one of this, it is getting selected -->
                 <option value="USD" {{if eq .CurrencyFrom `USD` }} selected{{end}}>Dollars USA</option>
                 <option value="RUB" {{if eq .CurrencyFrom `RUB` }} selected{{end}}>Rubles Russia</option>
                 <option value="EUR" {{if eq .CurrencyFrom `EUR` }} selected{{end}}>Euro Europe</option>
+                <option value="GBP" {{if eq .CurrencyFrom `GBP` }} selected{{end}}>Pounds UK</option>
+                <option value="JPY" {{if eq .CurrencyFrom `JPY` }} selected{{end}}>Yen Japan</option>
+                <option value="CNY" {{if eq .CurrencyFrom `CNY` }} selected{{end}}>CNY China</option>
             </select>
+            </div>
+
+            <div>
+                <label>To</label>
+                <select name="currencyTo" id="currencyTo">
+                    <option value="EUR" {{if eq .CurrencyTo `EUR`}} selected{{end}}>Euro Europe</option>
+                    <option value="USD" {{if eq .CurrencyTo `USD`}} selected{{end}}>Dollars USA</option>
+                    <option value="RUB" {{if eq .CurrencyTo `RUB`}} selected{{end}}>Rubles Russia</option>
+                    <option value="GBP" {{if eq .CurrencyTo `GBP` }} selected{{end}}>Pounds UK</option>
+                    <option value="JPY" {{if eq .CurrencyTo `JPY` }} selected{{end}}>Yen Japan</option>
+                    <option value="CNY" {{if eq .CurrencyTo `CNY` }} selected{{end}}>CNY China</option>
+                </select></div>
         </div>
 
-        <div>
-            <label>To</label>
-            <select name="currencyTo" id="currencyTo">
-                <option value="EUR" {{if eq .CurrencyTo `EUR`}} selected{{end}}>Euro Europe</option>
-                <option value="USD" {{if eq .CurrencyTo `USD`}} selected{{end}}>Dollars USA</option>
-                <option value="RUB" {{if eq .CurrencyTo `RUB`}} selected{{end}}>Rubles Russia</option>
-            </select>
-        </div>
-
-        <button type="submit">Calculate</button>
+        <button class="calcBtn" type="submit">Calculate</button>
     </form>
 
     <!-- If .Value is not null -->
